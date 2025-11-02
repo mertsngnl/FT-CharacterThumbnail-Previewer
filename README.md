@@ -1,8 +1,8 @@
 #  FlashThemes - Character Thumbnail ID Previewer
 
-This was in development since March, but now you can use it to preview character ID from minimium to maximium.
+This was in development since March but not in public, but now you can use it to preview character ID from minimium to maximium.
 
-## How to use this.
+## How to use this
 First, you should do something like
 ```
 (1) = Minimium
@@ -10,3 +10,5 @@ First, you should do something like
 ```
 
 You can use this tool to calculate and view how much characters you want to see by putting any of character ID and addition for more characters.
+
+**Please do not use this tool to scrape people's characters, just use it for educational purposes.**
