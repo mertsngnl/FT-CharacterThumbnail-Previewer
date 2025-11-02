@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Image Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors for the Dark/Blue Theme */
+            --dark-bg: #1a1a2e; /* Primary dark background */
+            --dark-surface: #2c2c43; /* Surfaces, boxes */
+            --light-text: #e0e0e0; /* Light text */
+            --accent-blue: #4e73f8; /* Primary accent blue */
+            --accent-blue-hover: #0056b3; /* Darker blue on hover */
+            --border-color: #3f3f5a; /* Softer border color */
+            --error-color: #ff6b6b; /* Error color (onerror) */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            /* Smooth transition for light/dark theme */
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Light Theme (optional, for toggle) */
+        body.light {
+            --dark-bg: #f4f4f4;
+            --dark-surface: #ffffff;
+            --light-text: #333333;
+            --border-color: #cccccc;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+            /* Small shadow for depth */
+            text-shadow: 0 0 5px rgba(78, 115, 248, 0.5);
+        }
+
+        #form-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--dark-surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+            /* Smooth entry animation */
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.6s ease-out forwards 0.2s;
+        }
+
+        label {
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            width: 80px;
+            text-align: center;
+            /* Smooth focus transition */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(78, 115, 248, 0.5);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            background-color: var(--accent-blue);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Transition (Tweening) on hover */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--accent-blue-hover);
+            transform: translateY(-2px); /* 'Lift-up' effect */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        #toggleTemaBtn {
+            background-color: var(--border-color); /* More neutral color for the toggle */
+        }
+
+        #image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            /* Image section animation */
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards 0.8s;
+        }
+
+        .image-box {
+            width: 220px;
+            min-height: 280px; /* Ensures minimum size for consistency */
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            background-color: var(--dark-surface);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            /* Transition (Tweening) on hover */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            cursor: default;
+        }
+
+        .image-box:hover {
+            transform: scale(1.03); /* Smooth zoom effect */
+            box-shadow: 0 8px 20px rgba(78, 115, 248, 0.3); /* Highlighted blue shadow */
+        }
+        
+        .image-box p {
+            font-weight: 300;
+            margin-top: 10px;
+            color: var(--light-text);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 6px;
+            object-fit: contain; /* Ensures the image fits */
+            border: 1px solid var(--border-color);
+            background-color: var(--dark-bg); /* Image background */
+            /* Image transition */
+            transition: transform 0.4s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.05); /* Zoom in on image on hover */
+        }
+        
+        /* Style for failed images */
+        .image-box.error {
+            border: 1px solid var(--error-color);
+            background-color: #3b2c3c;
+        }
+        
+        .image-box.error p {
+            color: var(--error-color);
+            font-weight: 600;
+        }
+        
+        /* KEYFRAMES for Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>FlashThemes Character Thumbnail ID Previewer</h1>
+    <div id="form-container">
+        <label for="minId">Min ID:</label>
+        <input type="number" id="minId" value="1" min="1" required>
+        <label for="maxId">Max ID:</label>
+        <input type="number" id="maxId" value="5" min="1" required>
+        <button onclick="generateImages()">🖼️ Generate Images</button>
+        <button id="toggleTemaBtn" onclick="toggleTheme()">🌞 Activate Light Theme</button>
+    </div>
+
+    <div id="image-container"></div>
+
+    <script>
+        // Updated function to use the CSS class for error handling
+        function handleError(imgElement) {
+            imgElement.style.display = 'none';
+            imgElement.parentElement.classList.add('error');
+            const pElement = imgElement.parentElement.querySelector('p');
+            if (pElement) {
+                pElement.textContent = `ID: ${pElement.dataset.id} (Failed)`;
+            }
+        }
+
+        function generateImages() {
+            const minId = parseInt(document.getElementById('minId').value);
+            const maxId = parseInt(document.getElementById('maxId').value);
+            const container = document.getElementById('image-container');
+            container.innerHTML = ''; // Clear existing images
+
+            if (isNaN(minId) || isNaN(maxId) || minId > maxId) {
+                alert('Please enter valid IDs, with Min ID less than or equal to Max ID.');
+                return;
+            }
+            
+            // Adds the "clear" and "populate" animation
+            container.style.opacity = '0'; 
+            setTimeout(() => {
+                for (let i = minId; i <= maxId; i++) {
+                    const imgUrl = `https://flashthemes.net/char_thumbs/c-${i}.png`;
+                    const imgBox = document.createElement('div');
+                    imgBox.className = 'image-box';
+                    // Note: The onerror parameter calls handleError
+                    imgBox.innerHTML = `<img src="${imgUrl}" alt="Image ID ${i}" onerror="handleError(this)">
+                                        <p data-id="${i}">ID: ${i}</p>`;
+                    
+                    // Adds a small opacity delay to animate the entry of each box (staggered effect)
+                    imgBox.style.opacity = '0';
+                    imgBox.style.animation = `fadeInDown 0.4s ease-out forwards ${0.05 * (i - minId)}s`;
+                    
+                    container.appendChild(imgBox);
+                }
+                container.style.opacity = '1';
+            }, 100); // Small delay for the clearing animation
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const toggleButton = document.getElementById('toggleTemaBtn');
+            body.classList.toggle('light'); // 'light' is the new toggle theme class
+
+            if (body.classList.contains('light')) {
+                toggleButton.textContent = '🌑 Activate Dark Theme';
+                // Change button background color for the light theme
+                toggleButton.style.backgroundColor = '#6c757d'; 
+                toggleButton.style.color = 'white';
+            } else {
+                toggleButton.textContent = '🌞 Activate Light Theme';
+                // Revert to CSS style (using the --border-color variable)
+                toggleButton.style.backgroundColor = ''; 
+                toggleButton.style.color = 'white';
+            }
+        }
+    </script>
+
+</body>
+</html>
